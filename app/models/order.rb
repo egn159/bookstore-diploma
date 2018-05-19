@@ -61,4 +61,11 @@ class Order < ApplicationRecord
   def delivery_price
     delivery_method&.cost || 0
   end
+
+  def check_need_coupon
+    if total_quantity.zero? && !coupon.nil?
+      self.coupon = nil
+      self.save
+    end
+  end
 end
