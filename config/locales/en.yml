@@ -87,7 +87,7 @@ en:
     title: 'Checkout'
     emptycart: 'Your cart is empty'
     thanks: 'Thank You for your Order!'
-    thanks2: 'An order has been created for %{email}'
+    thanks2: 'An order information has been sent to %{email}'
     allrequired: 'all fields are required'
     saveandcontinue: 'Save and Continue'
     ordersumm: 'Order Summary'
