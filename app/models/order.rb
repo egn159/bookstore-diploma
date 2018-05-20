@@ -68,4 +68,17 @@ class Order < ApplicationRecord
       self.save
     end
   end
+
+  after_save :first_order_gift, if: :saved_change_to_status?
+
+  private
+
+  def first_order_gift
+    old_value = saved_changes.transform_values(&:first)['status']
+    return if (old_value == 'delivered' || old_value == 'in_delivery')
+    return if (status != 'in_delivery' && status != 'delivered')
+    return if self.user.orders.where(status: [:in_delivery, :delivered]).size > 1
+    coupon = Coupon.generate_first_order_coupon(total_price - delivery_price)
+    OrderMailer.with(order: self.decorate, coupon: coupon).first_gift_email.deliver_now
+  end
 end
