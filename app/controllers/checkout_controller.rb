@@ -10,6 +10,11 @@ class CheckoutController < ApplicationController
 
   def index
     @form = CheckoutForm.new(@order)
+    return if cookies[:last_completed_order_id].nil?
+    OrderMailer.with(user: @user, order: @order).complete_email.deliver_now
+    return if @order.coupon.nil?
+    coupon = @order.coupon
+    coupon.update(activated: true) if coupon.coupon_type == 'one_time'
   end
 
   def edit_data
@@ -50,9 +55,7 @@ class CheckoutController < ApplicationController
     last_completed_order_id = cookies[:last_completed_order_id]
     return last_order if last_completed_order_id.nil?
     cookies.delete(:last_completed_order_id)
-    order = @user.orders.find_by(id: last_completed_order_id)
-    OrderMailer.with(user: @user, order: order.decorate).complete_email.deliver_now
-    order
+    @user.orders.find_by(id: last_completed_order_id)
   end
 
   def save_order_for_last_step

@@ -1,13 +1,13 @@
 class Coupon < ApplicationRecord
   has_many :orders, dependent: :nullify
 
-  enum type: %i[reusable one_time]
+  enum coupon_type: %i[reusable one_time]
 
   def self.generate_review_coupon
     code = 'review_' << rand(36**10).to_s(36).upcase
     Coupon.create(name: 'Review bonus', min_sum_to_activate: 25,
                   expires: DateTime.new + 7.days, discount: bonus,
-                  code: code, type: :one_time)
+                  code: code, coupon_type: :one_time)
   end
 
   #we will generate coupon depending on total_price
@@ -21,6 +21,6 @@ class Coupon < ApplicationRecord
     code = 'gift_' << rand(36**10).to_s(36).upcase
     min_sum = bonus * 20
     Coupon.create(name: 'First order', min_sum_to_activate: min_sum,
-                  expires: DateTime.now + 7.days, discount: bonus, code: code, type: :one_time)
+                  expires: DateTime.now + 7.days, discount: bonus, code: code, coupon_type: :one_time)
   end
 end

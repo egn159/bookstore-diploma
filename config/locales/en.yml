@@ -55,6 +55,7 @@ en:
     cantactivate: "You cannot activate coupon"
     sumerror: "You cannot activate coupon (order sum is not enough)"
     termerror: "You cannot activate coupon (coupon has expired)"
+    alreadyactivated: "You cannot activate coupon (сoupon is already activated)"
     activatesuccess: "Coupon activated!"
   order_item:
     create_success: "Item was added to cart"

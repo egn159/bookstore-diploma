@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 20180520133510) do
     t.datetime "updated_at", null: false
     t.string "code"
     t.float "discount", default: 0.0
-    t.integer "type", default: 0
+    t.integer "coupon_type", default: 0
     t.boolean "activated", default: false
   end
 
