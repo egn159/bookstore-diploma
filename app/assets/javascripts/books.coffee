@@ -9,6 +9,15 @@ $(document).on "turbolinks:load", ->
     ).on "ajax:error", (e, xhr, status, error) ->
      console.log('ERROR')
 
+  $('.rating_bar').starRating({
+    starSize: 25,
+    initialRating: 1,
+    useFullStars: true,
+    disableAfterRate: false,
+    callback: (currentRating, $el) ->
+      $('[name="review[rating]"]').val(currentRating)
+  })
+
   $(".egn_book_cart .item-change-quantity").click (event) ->
     action = $(this).data('action')
 

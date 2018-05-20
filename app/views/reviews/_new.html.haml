@@ -1,7 +1,9 @@
 = simple_form_for Review.new, url: reviews_path, method: "post" do |rew|
   = rew.input :title, input_html: { class: "form-control"}
   = rew.input :text, as: :text, input_html: { class: "form-control"}
-  = rew.input :rating, collection: 1..5
+  %b Rating:
+  .rating_bar
+  = rew.hidden_field :rating, value: 1
   = rew.hidden_field :book_id, value: "#{@book.id}"
   = rew.button :submit, t('reviews.post'), class: 'btn btn-default'
 
