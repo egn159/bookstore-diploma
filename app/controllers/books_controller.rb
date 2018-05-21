@@ -10,6 +10,6 @@ class BooksController < ApplicationController
 
   def show
     @book = @book.decorate
-    @reviews = @book.reviews.accepted.decorate
+    @reviews = @book.reviews.approved.decorate
   end
 end
