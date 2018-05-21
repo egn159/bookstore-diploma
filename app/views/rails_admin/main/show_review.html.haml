@@ -1,0 +1,48 @@
+- if @object.status == 'unprocessed'
+  = link_to 'Approve Review', check_review_path(@object, 'model_name': 'review', status: :approve), class: "btn btn-success"
+  = link_to 'Reject Review', check_review_path(@object, 'model_name': 'review', status: :reject), class: "btn btn-danger"
+.fieldset
+  %h4
+    Review Info:
+  %dl
+    %dt
+      %span.label.label-info
+        Book
+    %dd.well
+      = @object.title
+  %dl
+    %dt
+      %span.label.label-info
+        Title
+    %dd.well
+      = @object.title
+  %dl
+    %dt
+      %span.label.label-info
+        Text
+    %dd.well
+      = @object.text
+  %dl
+    %dt
+      %span.label.label-info
+        Rating
+    %dd.well
+      = @object.rating
+  %dl
+    %dt
+      %span.label.label-info
+        Created
+    %dd.well
+      = @object.created_at
+  %dl
+    %dt
+      %span.label.label-info
+        Status
+    %dd.well
+      = @object.status
+  %dl
+    %dt
+      %span.label.label-info
+        User id
+    %dd.well
+      = link_to @object.user_id, show_path(@object.user, model_name: 'user'), target: "_blank"

@@ -6,7 +6,7 @@ class Coupon < ApplicationRecord
   def self.generate_review_coupon
     code = 'review_' << rand(36**10).to_s(36).upcase
     Coupon.create(name: 'Review bonus', min_sum_to_activate: 25,
-                  expires: DateTime.new + 7.days, discount: bonus,
+                  expires: DateTime.now + 7.days, discount: 1,
                   code: code, coupon_type: :one_time)
   end
 

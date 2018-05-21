@@ -1,0 +1,81 @@
+%table.table.table-bordered.table-striped
+  %tr
+    %th Order id
+    %td= @object.id
+  %tr
+    %th User id
+    %td= link_to @object.user_id, show_path(@object.user, model_name: 'user'), target: "_blank"
+  %tr
+    %th Status
+    %td= @object.status
+  %tr
+    %th Completed at
+    %td= @object.completed_at
+  %tr
+    %th Addresses
+    %td
+      %table.table
+        %tr
+          %tr
+            %td
+              Billing Address
+              = link_to 'open', show_path(@object.billing_address, model_name: 'billing_address'), target: "_blank"
+            %td
+              Shipping Address
+              = link_to 'open', show_path(@object.shipping_address, model_name: 'shipping_address'), target: "_blank"
+          %tr
+            %td
+              %b First Name
+              %br= @object.billing_address.first_name
+              %b Last Name
+              %br= @object.billing_address.last_name
+              %b Address
+              %br= @object.billing_address.address
+              %b City
+              %br= @object.billing_address.city
+              %b Zip
+              %br= @object.billing_address.zip
+              %b Country
+              %br= @object.billing_address.country
+              %b Phone
+              %br= @object.billing_address.phone
+            %td
+              %b First Name
+              %br= @object.shipping_address.first_name
+              %b Last Name
+              %br= @object.shipping_address.last_name
+              %b Address
+              %br= @object.shipping_address.address
+              %b City
+              %br= @object.shipping_address.city
+              %b Zip
+              %br= @object.shipping_address.zip
+              %b Country
+              %br= @object.shipping_address.country
+              %b Phone
+              %br= @object.shipping_address.phone
+  %tr
+    %th
+      Books
+      %br= "subtotal: #{@object.subtotal}"
+    %td
+      - @object.order_items.each do |order_item|
+        - book = order_item.book
+        = link_to "#{book.name}", show_path(order_item, model_name: 'book'), target: "_blank"
+        = "x #{order_item.quantity}, Price: #{book.price}"
+        %hr
+  %tr
+    %th Delivery Method
+    %td
+      = "#{@object.delivery_method.name}"
+      = link_to 'open', show_path(@object.delivery_method, model_name: 'delivery_method'), target: "_blank"
+      %br= "cost: #{@object.delivery_method.cost}"
+  - unless @object.coupon.nil?
+    %tr
+      %th Coupon
+      %td= link_to "Discount: #{@object.coupon.discount}", show_path(@object.coupon, model_name: 'coupon'), target: "_blank"
+  %tr
+    %th Total Price
+    %td= @object.total_price
+
+
