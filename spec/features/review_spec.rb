@@ -26,7 +26,6 @@ describe 'reviews', type: :feature do
     it 'post a review' do
       fill_in 'review[title]', with: review[:title]
       fill_in 'review[text]', with: review[:text]
-      page.select review[:rating], from: 'review[rating]'
       find('input[name=commit][value=Post]').click
       expect(page).to have_content I18n.t('reviews.createsuccess')
     end
