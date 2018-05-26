@@ -43,7 +43,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'brakeman'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'capybara', '~> 2.13.0'
+  gem 'capybara', '~> 2.18'
   gem 'dotenv-rails', '~> 2.2', '>= 2.2.1'
   gem 'pry'
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
@@ -54,12 +54,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-webkit', '~> 1.14.0'
+  gem 'capybara-webkit', '~> 1.15'
   gem 'database_cleaner', '~> 1.6.1'
   gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
   gem 'rails-controller-testing'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'transactional_capybara', '~> 0.0.1'
+  gem 'transactional_capybara', '~> 0.2.0'
 end
 
 group :development do
