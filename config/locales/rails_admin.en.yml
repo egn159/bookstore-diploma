@@ -1,0 +1,11 @@
+en:
+  admin:
+    actions:
+      info_order:
+        menu: "Order info"
+        title: "Full Order information"
+        breadcrumb: "Info"
+      show_review:
+        menu: "Review"
+        title: "Review Information"
+        breadcrumb: "Info"

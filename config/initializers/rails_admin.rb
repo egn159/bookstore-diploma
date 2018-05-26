@@ -1,3 +1,6 @@
+require Rails.root.join('lib', 'rails_admin', 'moderation_review.rb')
+require Rails.root.join('lib', 'rails_admin', 'order_methods.rb')
+
 RailsAdmin.config do |config|
   config.authenticate_with do
     warden.authenticate! scope: :user
@@ -13,6 +16,18 @@ RailsAdmin.config do |config|
     exclude_fields :book
   end
 
+  config.model 'Order' do
+    list do
+      scopes %i[completed all]
+    end
+  end
+
+  config.model 'Review' do
+    list do
+      scopes %i[unprocessed all approved rejected]
+    end
+  end
+
   hidden_models = %w[InfoBook Image OrderItem CreditCard BillingAddress ShippingAddress]
 
   hidden_models.each do |model_name|
@@ -25,6 +40,12 @@ RailsAdmin.config do |config|
     dashboard                     # mandatory
     index                         # mandatory
     new
+
+    show_review
+    check_review
+
+    info_order
+
     export
     bulk_delete
     show

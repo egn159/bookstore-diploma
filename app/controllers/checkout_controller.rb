@@ -10,6 +10,11 @@ class CheckoutController < ApplicationController
 
   def index
     @form = CheckoutForm.new(@order)
+    return if cookies[:last_completed_order_id].nil?
+    OrderMailer.with(user: @user, order: @order).complete_email.deliver_now
+    return if @order.coupon.nil?
+    coupon = @order.coupon
+    coupon.update(activated: true) if coupon.coupon_type == 'one_time'
   end
 
   def edit_data
