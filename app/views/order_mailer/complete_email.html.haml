@@ -1,0 +1,36 @@
+- price_options = { unit: '$', format: '%n%u' }
+Thank you for Your order!
+%br Order information:
+%br
+%b Order number:
+= "R#{@order.number}"
+%br
+%br Items:
+%table{ border: "1px" }
+  %tr
+    %td #
+    %td Product
+    %td Price
+    %td Quantity
+    %td Subtotal
+  - @order.items.each_with_index do |order_item, i|
+    - item = order_item.book
+    %tr
+      %td= i + 1
+      %td= item.name
+      %td= number_to_currency(item.price, price_options)
+      %td= order_item.quantity
+      %td= number_to_currency((order_item.quantity * item.price), price_options)
+- unless @order.coupon.nil?
+  %br
+  %br Coupon:
+  = number_to_currency(@order.coupon_discount, price_options)
+%br
+  %b SubTotal:
+= number_to_currency(@order.total_items, price_options)
+%br
+  %b Delivery:
+= number_to_currency(@order.delivery_price, price_options)
+%br
+  %b Total:
+= number_to_currency(@order.pre_total_price, price_options)

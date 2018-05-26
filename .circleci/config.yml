@@ -10,7 +10,7 @@ jobs:
         environment:
           RAILS_ENV: test
           POSTGRES_USER: pgroot
-          POSTGRES_DB: book_store_test
+          POSTGRES_DB: book_store-dip_test
           POSTGRES_PASSWORD: root
     branches:
       only:

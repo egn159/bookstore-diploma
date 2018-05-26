@@ -1,0 +1,17 @@
+- price_options = { unit: '$', format: '%n%u' }
+
+Your review for book
+= link_to @review.book.name, book_url(@review.book)
+was approved.
+%br We would like to give you coupon as a gift
+%br Code:
+%br
+%h1
+  %b= @coupon.code
+%br
+%br Discount:
+= number_to_currency(@coupon.discount, price_options)
+%br Minimum sum to activate:
+= number_to_currency(@coupon.min_sum_to_activate, price_options)
+%br The coupon is valid until:
+= @coupon.expires.strftime("%Y-%m-%d %H:%M")
