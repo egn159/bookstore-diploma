@@ -9,7 +9,7 @@
       %span.label.label-info
         Book
     %dd.well
-      = @object.title
+      = link_to @object.book.name, show_path(@object.book, model_name: 'book'), target: "_blank"
   %dl
     %dt
       %span.label.label-info

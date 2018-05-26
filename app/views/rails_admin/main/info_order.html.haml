@@ -4,7 +4,7 @@
     %td= @object.id
   %tr
     %th User id
-    %td= link_to @object.user_id, show_path(@object.user, model_name: 'user'), target: "_blank"
+    %td= link_to "(#{@object.user_id}) #{@object.user.email}", show_path(@object.user, model_name: 'user'), target: "_blank"
   %tr
     %th Status
     %td= @object.status
