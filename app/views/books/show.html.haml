@@ -44,7 +44,7 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.published')
-          %p.lead.small.pull-right= @book.published
+          %p.lead.small.pull-right= @book.published_year
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.dimensions')
@@ -52,6 +52,6 @@
       .general-info-wrap.divider-lg
         .clearfix
           %p.pull-left= t('books.materials')
-          %p.lead.small.pull-right= @book.materials
+          %p.lead.small.pull-right= @book.materials_list
   .mb-80
     = render partial: "reviews", object: @book

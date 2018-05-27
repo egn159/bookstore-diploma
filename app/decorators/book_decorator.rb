@@ -22,6 +22,14 @@ class BookDecorator < Draper::Decorator
     "H: #{width} x W: #{height} x D: #{depth}"
   end
 
+  def published_year
+    object.published || '-'
+  end
+
+  def materials_list
+    object.materials || '-'
+  end
+
   def start_cutted_desc
     return object.full_desc unless more_desc?
     object.full_desc.truncate(Book::MAX_FULL_DESC_SHOW, omission: '')
