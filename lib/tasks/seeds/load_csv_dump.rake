@@ -48,7 +48,7 @@ task :load_csv_dump => [ :environment ] do
     end
     #binding.pry
     p "Set published #{i}"
-    b.published = row['published'] unless row['published'].nil?
+    b.published = row['date_string'] unless row['date_string'].nil?
     p "LOAD images #{i}"
     b.images << Image.new(remote_image_url: row['image_url']) unless row['image_url'].nil?
     p "create category #{i}"
