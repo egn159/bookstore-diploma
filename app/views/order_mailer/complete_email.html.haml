@@ -1,11 +1,11 @@
 - price_options = { unit: '$', format: '%n%u' }
-%h3 Order number:
-= "R#{@order.number}"
+%h3= "Order number: R#{@order.number}"
 Thank you for Your order!
 %br Order information:
 %br
-%br Items:
-%table{ border: "1px", style: "border: 1px #b4b4b4 solid;" }
+%br
+%b Items:
+%table{ border: "1px", style: "border-collapse: collapse; border:1px #b4b4b4 solid", cellpadding: "5" }
   %tr
     %td #
     %td Product
@@ -26,7 +26,7 @@ Thank you for Your order!
   = number_to_currency(@order.coupon_discount, price_options)
 %br
   %b SubTotal:
-= number_to_currency(@order.total_items, price_options)
+= number_to_currency(@order.subtotal, price_options)
 %br
   %b Delivery:
 = number_to_currency(@order.delivery_price, price_options)
