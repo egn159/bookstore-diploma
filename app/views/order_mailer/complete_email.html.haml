@@ -1,12 +1,11 @@
 - price_options = { unit: '$', format: '%n%u' }
+%h3 Order number:
+= "R#{@order.number}"
 Thank you for Your order!
 %br Order information:
 %br
-%b Order number:
-= "R#{@order.number}"
-%br
 %br Items:
-%table{ border: "1px" }
+%table{ border: "1px", style: "border: 1px #b4b4b4 solid;" }
   %tr
     %td #
     %td Product
