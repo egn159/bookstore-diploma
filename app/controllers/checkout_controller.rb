@@ -11,6 +11,7 @@ class CheckoutController < ApplicationController
   def index
     @form = CheckoutForm.new(@order)
     return if cookies[:last_completed_order_id].nil?
+    cookies.delete(:last_completed_order_id)
     OrderMailer.with(user: @user, order: @order).complete_email.deliver_now
     return if @order.coupon.nil?
     coupon = @order.coupon
@@ -54,7 +55,6 @@ class CheckoutController < ApplicationController
   def select_order
     last_completed_order_id = cookies[:last_completed_order_id]
     return last_order if last_completed_order_id.nil?
-    cookies.delete(:last_completed_order_id)
     @user.orders.find_by(id: last_completed_order_id)
   end
 
