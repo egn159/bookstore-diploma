@@ -45,8 +45,16 @@
                 %li.divider{role: "separator"}
                 %li
                   = link_to t('action.logout'), destroy_user_session_path, method: :delete
+          %li.egn-search
+            = form_tag books_path, { class: "navbar-form navbar-right", method: :get} do |f|
+              = text_field_tag :search, params[:search], class: "form-control", placeholder: "#{t('search.placeholder')}", required: true
+              = button_tag '', class: "fa fa-search general-form-help"
       .hidden-xs
         %ul.nav.navbar-nav
+          %li.egn-search
+            = form_tag books_path, { class: "navbar-form navbar-right", method: :get} do |f|
+              = text_field_tag :search, params[:search], class: "form-control", placeholder: "#{t('search.placeholder')}", required: true
+              = button_tag '', class: "fa fa-search general-form-help"
           %li
             = link_to t('pages.home'), root_path
           %li.dropdown

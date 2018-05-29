@@ -7,6 +7,9 @@ en:
     catalog: "Catalog"
     allcats: "All Categories"
     myaccount: "My account"
+  search:
+    placeholder: "Enter name to search"
+    notfound: "Not found \"%{text}\""
   action:
     login: "Log In"
     logout: "Log Out"

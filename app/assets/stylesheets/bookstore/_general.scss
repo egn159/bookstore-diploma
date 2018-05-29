@@ -343,3 +343,32 @@ button.ico-cart, input.ico-cart {
 div.egn-container{
   min-height: 85vh;
 }
+
+.active_cat {
+  color: #c59c71 !important;
+}
+
+
+
+.egn-search {
+  opacity: 0.8;
+
+  .fa.fa-search.general-form-help {
+    top: 30px;
+    background: none;
+    border: none;
+    right: 3px;
+  }
+}
+
+.visible-xs {
+  .egn-search {
+    .navbar-form {
+      margin: 0px;
+    }
+    .fa.fa-search.general-form-help {
+      top: 20px;
+      right: 20px;
+    }
+  }
+}

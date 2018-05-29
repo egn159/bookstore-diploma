@@ -9,7 +9,7 @@
         %ul.dropdown-menu
           - sort_params.each do |item|
             %li
-              = link_to t("books.#{item}"), books_url({sort: item, category: params[:category]})
+              = link_to t("books.#{item}"), books_url({sort: item, category: params[:category], search: params[:search]})
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         = link_to(books_path, class: "filter-link") do
@@ -17,7 +17,7 @@
           %span.badge.general-badge= total_books
       - categories_list.each do |category|
         %li.mr-35
-          = link_to(books_path(category: category[:id]), class: "filter-link") do
+          = link_to(books_path(category: category[:id], search: params[:search]), class: ["filter-link", ("active_cat" if category[:id] == params[:category].to_i)]) do
             = category[:name]
             %span.badge.general-badge= category[:count_books]
   .dropdowns.mb-25.visible-xs
@@ -28,7 +28,7 @@
           = I18n.t('books.all')
       - categories_list.each do |category|
         %li
-          = link_to(books_path(category: category[:id]), class: "filter-link") do
+          = link_to(books_path(category: category[:id], search: params[:search]), class: "filter-link", style: ("color: #f34040 !important;" if category[:id] == params[:category])) do
             = category[:name]
     %p.lead.small.mb-10= t('books.sortby')
     .dropdown
@@ -38,9 +38,13 @@
       %ul.dropdown-menu
         - sort_params.each do |item|
           %li
-            = link_to t("books.#{item}"), books_url({sort: item, category: params[:category]})
+            = link_to t("books.#{item}"), books_url({sort: item, category: params[:category], search: params[:search]})
   .mb-120
     .books-container
+      - unless params[:search].nil?
+        - if @books.size.zero?
+          = t('search.notfound', text: params[:search])
+
       = render partial: 'books', object: @books
     .text-center.view_more
       = render partial: 'view_more', object: @books

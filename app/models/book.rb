@@ -37,4 +37,5 @@ class Book < ApplicationRecord
   scope :latest, ->(num = 2) { last(num) }
   scope :select_category, ->(cat) { where(category: cat) if cat.present? }
   scope :select_sort, ->(val) { order(SORT_PARAMS[val]) if SORT_PARAMS.key?(val) }
+  scope :search, ->(val) { where('lower(name) LIKE ?', "%#{val.downcase}%") if val.present? }
 end
