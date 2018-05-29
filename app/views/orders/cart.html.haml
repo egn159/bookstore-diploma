@@ -10,7 +10,7 @@
           %span{'aria-hidden': "true"} &times;
         .general-img-wrap-table
           = image_tag(item.cover(:thumb), class: 'cart-img-shadow', alt: item.name)
-        %p.title= item.name
+        %p.title= link_to item.name, book_path(item), class: "book-link"
         %table.table
           %tr
             %td
@@ -62,7 +62,7 @@
             .general-img-wrap-table
               = image_tag(item.cover(:thumb), class: 'cart-img-shadow pull-left', alt: "#{item.name}")
           %td
-            %p.title= item.name
+            %p.title= link_to item.name, book_path(item), class: "book-link"
           %td
             %span.font-16.in-gold-500= number_to_currency(item.price, price_options)
           %td
